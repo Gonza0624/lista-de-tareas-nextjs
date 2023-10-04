@@ -1,0 +1,149 @@
+@use "../abstracts/mixin";
+$animation-speed: 0.2s;
+
+.newTask-section {
+  @include mixin.flex(center);
+  height: 100vh;
+
+  &__form {
+    margin-top: 60px;
+    width: 400px;
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: rgb(27, 124, 215);
+  }
+
+  &__btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(146, 150, 154);
+    color: #fff;
+    border-radius: 4px;
+    -webkit-text-fill-color: currentColor;
+    background-color: rgb(27, 124, 215);
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(27, 124, 215, 0.886);
+    }
+  }
+}
+
+.textfield-outlined {
+  position: relative;
+  margin-bottom: 20px;
+  padding-top: 6px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.4px;
+
+  input,
+  textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 9px 13px 9px;
+    font-size: 14px;
+    line-height: inherit;
+    color: rgb(39, 46, 54);
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent rgb(146, 150, 154) rgb(146, 150, 154);
+    border-radius: 4px;
+    -webkit-text-fill-color: currentColor;
+    background-color: transparent;
+    caret-color: rgb(27, 124, 215);
+    transition: border $animation-speed, box-shadow $animation-speed;
+
+    &:not(:focus):placeholder-shown {
+      border-top-color: rgb(146, 150, 154);
+    }
+
+    + label {
+      display: flex;
+      width: 100%;
+      max-height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 12px;
+      line-height: 15px;
+      color: rgb(146, 150, 154);
+      cursor: text;
+      transition: color $animation-speed, font-size $animation-speed,
+        line-height $animation-speed;
+    }
+
+    &:not(:focus):placeholder-shown + label {
+      font-size: 14px;
+      line-height: 54px;
+    }
+
+    + label::before,
+    + label::after {
+      content: "";
+      display: block;
+      box-sizing: border-box;
+      height: 8px;
+      min-width: 10px;
+      margin-top: 6px;
+      border-top: solid 1px rgb(146, 150, 154);
+      pointer-events: none;
+      box-shadow: inset 0 1px transparent;
+      transition: border $animation-speed;
+    }
+
+    + label::before {
+      margin-right: 4px;
+      border-left: solid 1px transparent;
+      border-radius: 4px 0;
+    }
+
+    + label::after {
+      flex-grow: 1;
+      margin-left: 4px;
+      border-right: solid 1px transparent;
+      border-radius: 0 4px;
+    }
+
+    &:not(:focus):placeholder-shown + label::before,
+    &:not(:focus):placeholder-shown + label::after {
+      border-top-color: transparent;
+    }
+
+    &:focus {
+      border-color: transparent rgb(27, 124, 215) rgb(27, 124, 215);
+      outline: none;
+    }
+
+    &:focus + label {
+      color: rgb(27, 124, 215);
+    }
+
+    &:focus + label::before,
+    &:focus + label::after {
+      border-top-color: rgb(27, 124, 215);
+    }
+  }
+}
+
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    .textfield-outlined > input,
+    .textfield-outlined > input + label,
+    .textfield-outlined > input + label::before,
+    .textfield-outlined > input + label::after,
+    .textfield-outlined > textarea,
+    .textfield-outlined > textarea + label,
+    .textfield-outlined > textarea + label::before,
+    .textfield-outlined > textarea + label::after {
+      transition-duration: 0.1s;
+    }
+  }
+}

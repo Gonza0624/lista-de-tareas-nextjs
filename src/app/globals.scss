@@ -1,0 +1,16 @@
+// reset
+@use "@/scss/base/reset.scss";
+@use "@/scss/base/base.scss";
+
+// navbar
+@use "@/scss/components/navbar.scss";
+
+// home
+@use "@/scss/components/home.scss";
+
+// task card
+@use "@/scss/components/taskCard.scss";
+
+// new task form
+@use "@/scss/components/newTask.scss";
+

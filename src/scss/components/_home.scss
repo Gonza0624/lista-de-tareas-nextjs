@@ -1,0 +1,6 @@
+@use "../abstracts/mixin";
+
+.home-section {
+  @include mixin.flex(center);
+  height: 100vh;
+}

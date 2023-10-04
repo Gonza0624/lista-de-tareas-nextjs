@@ -1,0 +1,61 @@
+@use "../abstracts/mixin";
+
+.task-card {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  padding: 30px;
+  margin-top: 60px;
+
+  &__content {
+    @include mixin.flex(space-between);
+    background-color: #ffffff;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(146, 150, 154, 0.6);
+    border-radius: 10px;
+  }
+
+  &__title {
+    color: rgb(27, 124, 215);
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin: 5px;
+  }
+
+  &__description {
+    margin: 5px;
+    overflow: auto;
+    overflow-wrap: break-word;
+  }
+
+  &__fecha {
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #949494;
+  }
+
+  &__container-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  &__edit {
+    cursor: pointer;
+    color: #ffd500;
+    font-weight: 500;
+    margin: 5px 0px;
+  }
+
+  &__delete {
+    margin: 5px 0px;
+    cursor: pointer;
+    color: red;
+    font-weight: 500;
+  }
+}
