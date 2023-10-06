@@ -10,13 +10,17 @@
   },
   "dependencies": {
     "@prisma/client": "^5.4.1",
+    "axios": "^1.5.1",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.1",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
     "react-toastify": "^9.1.3",
+    "serverless-mysql": "^1.5.5",
     "sweetalert2": "^11.7.31"
   },
   "devDependencies": {

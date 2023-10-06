@@ -1,21 +1,13 @@
 @use "../abstracts/mixin";
 
 .task-card {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 60px;
-  padding: 30px;
-  margin-top: 60px;
-
-  &__content {
-    @include mixin.flex(space-between);
-    background-color: #ffffff;
-    padding: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(146, 150, 154, 0.6);
-    border-radius: 10px;
-  }
+  @include mixin.flex(space-between);
+  background-color: #ffffff;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(146, 150, 154, 0.6);
+  border-radius: 10px;
 
   &__title {
     color: rgb(27, 124, 215);
@@ -38,9 +30,7 @@
   }
 
   &__container-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixin.flex(center);
     flex-direction: column;
     padding: 5px;
   }

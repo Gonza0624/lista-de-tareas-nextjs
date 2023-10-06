@@ -1,38 +1,39 @@
+import { pool } from "@/config/db";
 import { NextResponse } from "next/server";
-import { prisma } from "@/libs/prisma";
 
+// traer tarea individualmente
 export async function GET(request, { params }) {
-  const task = await prisma.task.findUnique({
-    where: {
-      id: Number(params.id),
-    },
-  });
-
-  return NextResponse.json(task);
+  try {
+    const result = await pool.query("SELECT * FROM tasks WHERE id = ?", [
+      params.id,
+    ]);
+    return NextResponse.json(result[0]);
+  } catch (error) {
+    return NextResponse.json({ message: error.message });
+  }
 }
 
+// actualizar tarea
 export async function PUT(request, { params }) {
   const data = await request.json();
-  const taskUpdated = await prisma.task.update({
-    where: {
-      id: Number(params.id),
-    },
-    data: data,
-  });
 
-  return NextResponse.json(taskUpdated);
+  try {
+    await pool.query("UPDATE tasks SET ? WHERE id = ?", [data, params.id]);
+    return NextResponse.json({
+      ...data,
+      id: params.id,
+    });
+  } catch (error) {
+    return NextResponse.json({ message: error.message });
+  }
 }
 
+// eliminar tarea
 export async function DELETE(request, { params }) {
   try {
-    const taskRemoved = await prisma.task.delete({
-      where: {
-        id: Number(params.id),
-      },
-    });
-
-    return NextResponse.json(`esta tarea se ha eliminado - ${taskRemoved}`);
+    await pool.query("DELETE FROM tasks WHERE id = ?", [params.id]);
+    return NextResponse.json({}, { status: 204 });
   } catch (error) {
-    return NextResponse.json(error.message);
+    return NextResponse.json({ message: error.message });
   }
 }

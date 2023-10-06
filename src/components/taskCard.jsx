@@ -6,7 +6,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const TaskCard = ({ tasks }) => {
+const TaskCard = ({ task }) => {
   const router = useRouter();
 
   const handleEdit = async (id) => {
@@ -44,30 +44,26 @@ const TaskCard = ({ tasks }) => {
   };
 
   return (
-    <main className="task-card">
-      {tasks.map((task) => (
-        <ul className="task-card__content" key={task.id}>
-          <div>
-            <li className="task-card__title">
-              {task.id}. {task.title}
-            </li>
-            <li className="task-card__description">{task.description}</li>
-            <li className="task-card__fecha">
-              {new Date(task.createAt).toLocaleDateString()}
-            </li>
-          </div>
+    <div className="task-card">
+      <div>
+        <p className="task-card__title">
+          {task.id}. {task.title}
+        </p>
+        <p className="task-card__description">{task.description}</p>
+        <p className="task-card__fecha">
+          {new Date(task.createdAt).toLocaleDateString()}
+        </p>
+      </div>
 
-          <div className="task-card__container-btn">
-            <a onClick={() => handleEdit(task.id)} className="task-card__edit">
-              <FiEdit fontSize={22} />
-            </a>
-            <a onClick={() => handleDelete(task.id)} className="task-card__delete">
-              <AiOutlineDelete fontSize={25} />
-            </a>
-          </div>
-        </ul>
-      ))}
-    </main>
+      <div className="task-card__container-btn">
+        <a className="task-card__edit" onClick={() => handleEdit(task.id)}>
+          <FiEdit fontSize={22} />
+        </a>
+        <a className="task-card__delete" onClick={() => handleDelete(task.id)}>
+          <AiOutlineDelete fontSize={25} />
+        </a>
+      </div>
+    </div>
   );
 };
 
