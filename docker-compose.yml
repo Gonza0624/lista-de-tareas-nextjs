@@ -11,4 +11,17 @@ services:
     volumes:
       - ./database/db.sql:/docker-entrypoint-initdb.d/init.sql
     command: mysqld --default-authentication-plugin=mysql_native_password
+    networks:
+      - mynetwork
 
+  nextjs:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - mysqldb
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
