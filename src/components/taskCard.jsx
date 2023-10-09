@@ -9,6 +9,13 @@ import { useRouter } from "next/navigation";
 const TaskCard = ({ task }) => {
   const router = useRouter();
 
+  const formattedDate = new Date(task.createdAt);
+  const options = { year: "numeric", month: "numeric", day: "numeric" };
+  const formattedDateString = formattedDate.toLocaleDateString(
+    "es-ES",
+    options
+  );
+
   const handleEdit = async (id) => {
     router.push(`/task/edit/${id}`);
   };
@@ -50,9 +57,7 @@ const TaskCard = ({ task }) => {
           {task.id}. {task.title}
         </p>
         <p className="task-card__description">{task.description}</p>
-        <p className="task-card__fecha">
-          {new Date(task.createdAt).toLocaleDateString()}
-        </p>
+        <p className="task-card__fecha">{formattedDateString}</p>
       </div>
 
       <div className="task-card__container-btn">
